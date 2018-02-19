@@ -1,0 +1,28 @@
+version: '3'
+services:
+  node1:
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    container_name: ethereum_test01_node1
+    build:
+      context: .
+      dockerfile: ./Dockerfile.boot
+  node2:
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    container_name: ethereum_test01_node2
+    links:
+    - node1
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+  node3:
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    container_name: ethereum_test01_node3
+    links:
+    - node1
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
